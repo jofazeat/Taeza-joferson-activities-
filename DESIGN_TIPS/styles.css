@@ -1,0 +1,48 @@
+body {
+    font-family: Ariel, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color:blue;
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+p {
+    font-size: 18px;
+    margin: 20px;
+}
+
+a{
+    display: inline-block;
+    background-color: chartreuse;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+
+}
+a :hover {
+    background-color: brown;
+}
+
+.box{
+    border: 2px solidblack;
+    padding: 20px;
+    display: inline-block;
+}
+
+p{
+    border: 2px solid black;
+    padding: 10px;
+    background-color: #f4f4f4;
+    display: inline-block;
+    font-size: 18px;
+}
