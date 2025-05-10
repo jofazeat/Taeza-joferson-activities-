@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Student</title></head>
+<body>
+  <h2>Add New Student</h2>
+  <form method="post">
+    Name: <input name="name"><br>
+    Email: <input name="email"><br>
+    <input type="submit" value="Add Student">
+  </form>
+  <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

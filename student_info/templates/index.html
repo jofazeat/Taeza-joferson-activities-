@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Sign Up</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-control, .btn {
+      border-radius: 6px;
+    }
+
+    .btn-primary {
+      background-color: #2575fc;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #1a5dcc;
+    }
+
+    #spinner {
+      display: none;
+    }
+
+    .toggle-link {
+      color: #2575fc;
+      cursor: pointer;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-4">
+        <div class="card-body">
+          <h3 class="text-center text-primary mb-4" id="formTitle">Login</h3>
+
+          <!-- Alert -->
+          <div id="message" class="alert alert-danger" style="display: none;"></div>
+
+          <!-- Single Form for Login and Signup -->
+          <form id="loginForm">
+            <!-- Sign Up Fields -->
+            <div id="signupFields" style="display: none;">
+              <div class="form-group">
+                <label for="newUsername">Username</label>
+                <input type="text" class="form-control" id="newUsername" placeholder="Choose a username" />
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Password</label>
+                <input type="password" class="form-control" id="newPassword" placeholder="Choose a password" />
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" />
+              </div>
+            </div>
+
+            <!-- Login Fields -->
+            <div id="loginFields">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" required />
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" required />
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="remember" />
+                <label class="form-check-label" for="remember">Remember me</label>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <div id="spinner" class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3" id="submitBtn">Log In</button>
+          </form>
+
+          <p class="text-center mt-3">
+            <span id="toggleText">Don’t have an account?</span>
+            <span class="toggle-link" onclick="toggleForm()" id="toggleLink">Sign up</span>
+          </p>
+        </div>
+      </div>
+      <p class="text-center mt-3 text-light"><small>&copy; 2025 MyApp</small></p>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap & jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  let isLogin = true;
+
+  function toggleForm() {
+    isLogin = !isLogin;
+    document.getElementById('formTitle').innerText = isLogin ? 'Login' : 'Sign Up';
+    document.getElementById('submitBtn').innerText = isLogin ? 'Log In' : 'Sign Up';
+    document.getElementById('toggleText').innerText = isLogin ? "Don’t have an account?" : "Already have an account?";
+    document.getElementById('toggleLink').innerText = isLogin ? "Sign up" : "Log in";
+    document.getElementById('loginFields').style.display = isLogin ? 'block' : 'none';
+    document.getElementById('signupFields').style.display = isLogin ? 'none' : 'block';
+    document.getElementById('message').style.display = 'none';
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('message').style.display = 'none';
+
+    if (isLogin) {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('pwd').value;
+
+      if (!username || !password) {
+        document.getElementById('message').innerText = "Both fields are required!";
+        document.getElementById('message').style.display = 'block';
+        return;
+      }
+
+      const storedUsername = localStorage.getItem('newUsername');
+      const storedPassword = localStorage.getItem('newPassword');
+
+      const validCredentials =
+        (username === storedUsername && password === storedPassword) ||
+        (username === "admin" && password === "password");
+
+      if (validCredentials) {
+        window.location.href = "home.html"; // <-- Replace this line
+
+      } else {
+        document.getElementById('message').innerText = "Invalid username or password.";
+        document.getElementById('message').style.display = 'block';
+      }
+    } else {
+      const newUsername = document.getElementById('newUsername').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (!newUsername || !newPassword || !confirmPassword) {
+        document.getElementById('message').innerText = "All fields are required!";
+        document.getElementById('message').style.display = 'block';
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        document.getElementById('message').innerText = "Passwords do not match!";
+        document.getElementById('message').style.display = 'block';
+        return;
+      }
+
+      localStorage.setItem('newUsername', newUsername);
+      localStorage.setItem('newPassword', newPassword);
+
+      alert('Account created successfully! Please log in.');
+      toggleForm();
+    }
+  });
+</script>
+
+</body>
+</html>

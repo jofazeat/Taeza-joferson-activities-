@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+  <h2>Welcome, {{ session.username }}</h2>
+  <a href="{{ url_for('add_student') }}">Add Student</a><br>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
