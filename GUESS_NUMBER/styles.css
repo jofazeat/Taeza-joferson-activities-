@@ -1,0 +1,142 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #5e5d23 0%, #5e5d23 100%); /* Soft blue gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrolling */
+    position: relative;
+}
+
+/* Subtle Pattern Overlay (Optional) */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/diagonal_stripes.png'); /* Subtle diagonal stripes pattern */
+    opacity: 0.1; /* Lightly visible */
+    pointer-events: none; /* Ensures the overlay doesn't interfere with the content */
+}
+
+/* Game Container */
+.game-container {
+    background: rgba(88, 88, 88, 0.85); /* Dark Green with slight transparency */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+    border: 4px solid; /* Titanium effect border */
+    border-image: linear-gradient(45deg, #d1d1d1, #962727, #c5c5c5) 1;
+    border-radius: 12px;
+}
+
+/* Title */
+h2 {
+    font-size: 28px;
+    color: #fff; /* White text for contrast */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    color: #ddd; /* Lighter text for readability */
+    margin-bottom: 15px;
+}
+
+/* Input field */
+input[type="text"] {
+    padding: 12px;
+    font-size: 16px;
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #3cb2e0;
+    box-shadow: 0 0 5px rgba #3cb2e0;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 80%;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Result & Tries Left */
+.tries-left {
+    font-size: 18px;
+    color: #ddd;
+    margin-top: 15px;
+}
+
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Result Colors */
+.result.green {
+    color: #28a745;
+}
+
+.result.orange {
+    color: #fd7e14;
+}
+
+.result.red {
+    color: #dc3545;
+}
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .game-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    input[type="text"],
+    button {
+        width: 100%;
+    }
+}

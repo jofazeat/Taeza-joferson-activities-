@@ -1,0 +1,29 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+
+}
+img{
+    width: 300px; /* Adjust size as needed*/
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px; /* Optional styling */
+}
+
+.image-box {
+    width: 300px;
+    height: 200px;
+    background-image: url('okibalayboto.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-radius: 10px; /*Optional styling*/;
+}
